@@ -18,21 +18,20 @@ class Token extends Caller
     public string $version = "1.0.0";
 
     /**
-     * @param $client_id
-     * @param $client_sercret
      * @param $code
+     * @param $client_ip
      *
      * @return array|mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function buildAccessToken($client_id, $client_sercret, $code, $client_ip)
+    public function buildAccessToken($code, $client_ip)
     {
         $request = [
-            "grant_type"        => "authorization_code",
-            "request_client_ip" => $client_ip,
-            "client_id"         => $client_id,
-            "client_secret"     => $client_sercret,
             "code"              => $code,
+            "request_client_ip" => $client_ip,
+            "grant_type"        => "authorization_code",
+            "client_id"         => $this->app->config->get("app_key"),
+            "client_secret"     => $this->app->config->get("app_secret"),
             "redirect_uri"      => $this->app->config->get("notify_url"),
         ];
 
@@ -54,19 +53,18 @@ class Token extends Caller
     }
 
     /**
-     * @param $chan_tag
-     * @param $link
-     * @param $target_type
+     * @param $refresh_token
+     * @param $client_ip
      *
      * @return array
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function refreshAccessToken($client_id, $client_sercret, $refresh_token, $client_ip): array
+    public function refreshAccessToken($refresh_token, $client_ip): array
     {
         $result = $this->Send("refreshToken", [
             "request" => [
-                "client_id"         => $client_id,
-                "client_secret"     => $client_sercret,
+                "client_id"         => $this->app->config->get("app_key"),
+                "client_secret"     => $this->app->config->get("app_secret"),
                 "refresh_token"     => $refresh_token,
                 "request_client_ip" => $client_ip
             ]
