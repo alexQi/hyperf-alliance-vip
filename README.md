@@ -1,1 +1,1 @@
-# 美团联盟API (for hyperf 3.0)
+# 唯品会联盟API (for hyperf 3.0)
