@@ -8,9 +8,9 @@ declare(strict_types=1);
 namespace HyperfAlliance\Vip;
 
 use AlexQiu\Sdkit\ServiceContainer;
-use App\Librarys\Vip\Services\Oauth;
 use HyperfAlliance\Vip\Providers\CallerProvider;
 use HyperfAlliance\Vip\Providers\HttpServiceClientProvider;
+use HyperfAlliance\Vip\Services\Oauth;
 use HyperfAlliance\Vip\Services\Order;
 use HyperfAlliance\Vip\Services\Pid;
 use HyperfAlliance\Vip\Services\Token;
