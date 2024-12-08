@@ -16,7 +16,7 @@ class ConfigProvider
     {
         return [
             'dependencies' => [
-                // 将 ServiceInterface 映射到 Service 工厂，确保框架注入正确实例
+                // 将 Service 映射到 工厂，确保框架注入正确实例
                 Service::class => Factory::class,
             ],
             'annotations'  => [

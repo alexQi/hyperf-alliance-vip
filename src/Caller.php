@@ -9,10 +9,10 @@ use HyperfAlliance\Vip\Utils\SignUtil;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Client
+ * Caller
  *
  * @author  alex
- * @package HyperfAlliance\Vip\Client
+ * @package HyperfAlliance\Vip\Caller
  */
 class Caller extends KitBaseClient
 {
