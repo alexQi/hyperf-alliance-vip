@@ -11,24 +11,22 @@ use AlexQiu\Sdkit\ServiceContainer;
 use HyperfAlliance\Vip\Providers\CallerProvider;
 use HyperfAlliance\Vip\Providers\HttpServiceClientProvider;
 use HyperfAlliance\Vip\Services\Oauth;
+use HyperfAlliance\Vip\Services\Invitation;
 use HyperfAlliance\Vip\Services\Order;
 use HyperfAlliance\Vip\Services\Pid;
 use HyperfAlliance\Vip\Services\Token;
 use HyperfAlliance\Vip\Services\Url;
 
 /**
- * 美团客户端类，用于发送请求到美团接口。
- */
-
-/**
- * 美团客户端类，用于发送请求到美团接口。
+ * 唯品会客户端类，用于发送请求到唯品会接口。
  * Service
  *
- * @property Oauth $oauth
- * @property Pid   $pid
- * @property Token $token
- * @property Url   $url
- * @property Order $order
+ * @property Oauth      $oauth
+ * @property Invitation $invitation
+ * @property Pid        $pid
+ * @property Token      $token
+ * @property Url        $url
+ * @property Order      $order
  *
  * @author  alex
  * @package HyperfAlliance\Vip\Service

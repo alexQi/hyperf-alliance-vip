@@ -19,7 +19,7 @@
     }
   },
   "require": {
-    "php": ">=7.3",
+    "php": ">=7.4",
     "alex-qiu/sdkit": "^1.0",
     "ext-swoole": ">=4.4",
     "hyperf/config": "3.0.*",

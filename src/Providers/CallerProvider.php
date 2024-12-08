@@ -3,7 +3,7 @@
 namespace HyperfAlliance\Vip\Providers;
 
 use AlexQiu\Sdkit\ServiceContainer;
-use HyperfAlliance\Vip\Caller;
+use HyperfAlliance\Vip\Services\Invitation;
 use HyperfAlliance\Vip\Services\Oauth;
 use HyperfAlliance\Vip\Services\Order;
 use HyperfAlliance\Vip\Services\Pid;
@@ -27,6 +27,9 @@ class CallerProvider
     {
         $service->getContainer()->set("oauth", function () use ($service) {
             return new Oauth($service);
+        });
+        $service->getContainer()->set("invitation", function () use ($service) {
+            return new Invitation($service);
         });
         $service->getContainer()->set("order", function () use ($service) {
             return new Order($service);

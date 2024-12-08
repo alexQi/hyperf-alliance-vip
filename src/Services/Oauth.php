@@ -4,6 +4,12 @@ namespace HyperfAlliance\Vip\Services;
 
 use HyperfAlliance\Vip\Caller;
 
+/**
+ * Oauth
+ *
+ * @author  alex
+ * @package HyperfAlliance\Vip\Services\Oauth
+ */
 class Oauth extends Caller
 {
     /**

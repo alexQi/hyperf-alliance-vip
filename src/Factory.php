@@ -8,7 +8,7 @@ use Hyperf\Contract\ConfigInterface;
 use Psr\Container\ContainerInterface;
 
 /**
- * 美团客户端工厂类。
+ * 唯品会客户端工厂类。
  */
 class Factory
 {
@@ -24,7 +24,7 @@ class Factory
         /** @var ConfigInterface $config */
         $config = $container->get(ConfigInterface::class);
 
-        // 获取美团相关配置
+        // 获取唯品会相关配置
         $config = $config->get('vip', []);
 
         return new Service($config);
