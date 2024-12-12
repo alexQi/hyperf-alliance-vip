@@ -10,6 +10,7 @@ use function Hyperf\Support\env;
 
 return [
     'debug'      => env('VIP_DEBUG', true),
+    'account_id' => env('VIP_ACCOUNT_ID', ""),
     'notify_url' => env('VIP_NOTIFY_URL', ''),
     'app_key'    => env('VIP_APP_KEY', ''),
     'app_secret' => env('VIP_APP_SECRET', ''),
