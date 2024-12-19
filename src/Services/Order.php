@@ -38,6 +38,9 @@ class Order extends Caller
         if (isset($params["status"])) {
             $queryModel["status"] = $params["status"];
         }
+        if (isset($params["orderSnList"])) {
+            $queryModel["orderSnList"] = $params["orderSnList"];
+        }
         if (isset($params["orderTimeStart"]) && isset($params["orderTimeEnd"])) {
             $queryModel["orderTimeStart"] = $params["orderTimeStart"];
             $queryModel["orderTimeEnd"]   = $params["orderTimeEnd"];
@@ -144,6 +147,9 @@ class Order extends Caller
         }
         if (isset($params["status"])) {
             $queryModel["status"] = $params["status"];
+        }
+        if (isset($params["orderSnList"])) {
+            $queryModel["orderSnList"] = $params["orderSnList"];
         }
         if (isset($params["orderTimeStart"]) && isset($params["orderTimeEnd"])) {
             $queryModel["orderTimeStart"] = $params["orderTimeStart"];

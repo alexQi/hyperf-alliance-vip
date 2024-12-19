@@ -61,8 +61,13 @@ class Url extends Caller
      * @return array
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function genByVIPUrlWithOauth($chan_tag, $link, $macro_symbol = "__REQUESTID__", $target_type = "URL"): array
-    {
+    public function genByVIPUrlWithOauth(
+        $chan_tag,
+        $link,
+        $macro_symbol = "__REQUESTID__",
+        $target_type = "URL",
+        $ad_code = 'vendoapi'
+    ): array {
         $url_gen_request = [
             "targetType"      => $target_type,
             "targetValueList" => [$link],
@@ -71,7 +76,7 @@ class Url extends Caller
             "openId"          => "default_open_id",
             "realCall"        => true,
             "platform"        => 1,
-            "adCode"          => "unionapi",
+            "adCode"          => $ad_code,
         ];
 
         $result = $this->Send("genByVIPUrlWithOauth", [
@@ -115,8 +120,13 @@ class Url extends Caller
      * @return array
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function genByVIPUrl($chan_tag, $link, $macro_symbol = "__REQUESTID__", $target_type = "URL"): array
-    {
+    public function genByVIPUrl(
+        $chan_tag,
+        $link,
+        $macro_symbol = "__REQUESTID__",
+        $target_type = "URL",
+        $ad_code = 'vendoapi'
+    ): array {
         $url_gen_request = [
             "targetType"      => $target_type,
             "targetValueList" => [$link],
@@ -125,7 +135,58 @@ class Url extends Caller
             "openId"          => "default_open_id",
             "realCall"        => true,
             "platform"        => 1,
-            "adCode"          => "unionapi",
+            "adCode"          => $ad_code,
+        ];
+
+        $result = $this->Send("genByVIPUrl", [
+            "urlList"       => [],
+            "chanTag"       => $chan_tag,
+            "statParam"     => $macro_symbol,
+            "urlGenRequest" => $url_gen_request,
+            "requestId"     => QueryUtils::buildRequestId()
+        ]);
+        if (!$result || !isset($result["urlInfoList"]) || empty($result["urlInfoList"])) {
+            throw new ResultErrorException("获取链接失败");
+        }
+        $link_map = current($result["urlInfoList"]);
+        if (isset($link_map["vipWxUrl"])) {
+            $link_map["vipWxSchemaUrl"] = $this->buildWechatSchemaUrl($link_map["vipWxUrl"]);
+        }
+
+        arsort($link_map);
+        $links = [];
+        foreach ($link_map as $key => $link) {
+            if (in_array($key, self::$ignore_keys)) {
+                continue;
+            }
+            if (!isset(self::$keys_mapping[$key])) {
+                continue;
+            }
+            $links[] = [
+                "key"   => $key,
+                "label" => self::$keys_mapping[$key],
+                "link"  => str_replace('%24', '$', $link)
+            ];
+        }
+        return $links;
+    }
+
+    /**
+     * @param $chan_tag
+     * @param $link
+     * @param $target_type
+     *
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getChannelUrlByType($chan_tag, $link, $macro_symbol = "__REQUESTID__", $type = "URL"): array
+    {
+        $url_gen_request = [
+            "type"     => $type,
+            "urlParam" => [$link],
+            "openId"   => "default_open_id",
+            "realCall" => true,
+            "adCode"   => "vendoapi",
         ];
 
         $result = $this->Send("genByVIPUrl", [
