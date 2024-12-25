@@ -53,7 +53,9 @@ class Caller extends KitBaseClient
     {
         $res = parent::unwrapResponse($response);
         if ($res['returnCode']) {
-            throw new ResultErrorException($res["returnMessage"] ?? $res["returnCode"], 77000);
+            throw new ResultErrorException(
+                $res["returnMessage"] ?? "response has unkown err", $res["returnCode"] ?? "vipapis.system_error"
+            );
         }
         return $res["result"];
     }
