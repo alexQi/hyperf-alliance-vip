@@ -57,7 +57,7 @@ class Caller extends KitBaseClient
                 "code"    => 7001000,
                 "message" => "系统内部错误"
             ];
-            throw new ResultErrorException($error["code"], $error["message"]);
+            throw new ResultErrorException($error["message"], $error["code"],);
         }
         return $res["result"];
     }
